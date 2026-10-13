@@ -1,0 +1,319 @@
+<!-- ============================================================
+     DREAM BRIDE — form di candidatura
+     Da incollare in un blocco "HTML personalizzato" di WordPress.
+     UNICA COSA DA MODIFICARE: la riga ENDPOINT qui sotto nello
+     script in fondo, con l'URL /exec del web app di Apps Script.
+     ============================================================ -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap">
+
+<div id="db-form-root">
+<style>
+#db-form-root{
+  --db-bg:#F5F1E8; --db-ink:#23211E; --db-body:#3A3733; --db-muted:#5A554E;
+  --db-accent:#5E6B55; --db-rule:#DED7C8; --db-line:#B0A894; --db-field:#FFFFFF;
+  background:var(--db-bg); color:var(--db-ink);
+  font-family:'Jost',system-ui,sans-serif; font-weight:300;
+  padding:clamp(28px,6vw,64px) clamp(16px,5vw,40px);
+  margin:0 auto; max-width:760px; box-sizing:border-box; line-height:1.6;
+}
+#db-form-root *,#db-form-root *::before,#db-form-root *::after{box-sizing:border-box}
+#db-form-root .db-eyebrow{
+  font-size:13px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--db-accent); font-weight:400;
+}
+#db-form-root h1.db-title{
+  font-family:'Cormorant Garamond',Georgia,serif; font-weight:300;
+  font-size:clamp(40px,8vw,64px); line-height:1.05; margin:18px 0 0;
+  letter-spacing:.01em; color:var(--db-ink);
+}
+#db-form-root .db-claim{
+  font-family:'Cormorant Garamond',Georgia,serif; font-style:italic;
+  font-size:clamp(20px,4vw,27px); color:var(--db-body); margin-top:10px;
+}
+#db-form-root .db-rule{width:88px; height:1px; background:var(--db-line); margin:32px 0}
+#db-form-root .db-intro{font-size:17px; color:var(--db-body); margin:0 0 10px}
+#db-form-root .db-intro strong{font-weight:500; color:var(--db-ink)}
+#db-form-root fieldset{border:0; margin:40px 0 0; padding:0}
+#db-form-root legend{
+  font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:400;
+  color:var(--db-ink); padding:0 0 14px; margin-bottom:22px; width:100%;
+  border-bottom:1px solid var(--db-rule);
+}
+#db-form-root .db-field{margin-bottom:24px}
+#db-form-root .db-field > label,#db-form-root .db-grouplabel{
+  display:block; font-size:15px; font-weight:400; color:var(--db-ink); margin-bottom:8px;
+}
+#db-form-root .db-req{color:var(--db-accent)}
+#db-form-root .db-hint{display:block; font-size:14px; color:var(--db-muted); margin-top:-2px; margin-bottom:8px}
+#db-form-root input[type=text],
+#db-form-root input[type=email],
+#db-form-root input[type=tel],
+#db-form-root input[type=date],
+#db-form-root select,
+#db-form-root textarea{
+  width:100%; font-family:inherit; font-size:16px; font-weight:300; color:var(--db-ink);
+  background:var(--db-field); border:1px solid var(--db-rule); border-radius:0;
+  padding:14px 16px; min-height:50px; -webkit-appearance:none; appearance:none;
+  transition:border-color .15s;
+}
+#db-form-root select{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235A554E' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 16px center; background-size:12px;
+  padding-right:44px;
+}
+#db-form-root textarea{min-height:130px; resize:vertical; line-height:1.6}
+#db-form-root input:focus,#db-form-root select:focus,#db-form-root textarea:focus{
+  outline:2px solid var(--db-accent); outline-offset:1px; border-color:var(--db-accent);
+}
+#db-form-root .db-checks{display:flex; flex-direction:column; gap:2px}
+#db-form-root .db-check{
+  display:flex; align-items:flex-start; gap:12px; padding:11px 0; cursor:pointer; font-size:16px;
+  color:var(--db-body);
+}
+#db-form-root .db-check input{
+  width:22px; height:22px; min-width:22px; margin:1px 0 0; accent-color:var(--db-accent); cursor:pointer;
+}
+#db-form-root .db-consent{
+  margin-top:28px; padding:20px; background:rgba(255,255,255,.55); border:1px solid var(--db-rule);
+}
+#db-form-root .db-consent .db-check{font-size:15px; padding:0}
+#db-form-root .db-consent p{font-size:14px; color:var(--db-muted); margin:12px 0 0}
+#db-form-root .db-hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+#db-form-root button.db-submit{
+  font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; font-weight:400; letter-spacing:.02em;
+  color:#F5F1E8; background:var(--db-ink); border:1px solid var(--db-ink);
+  padding:18px 52px; min-height:58px; cursor:pointer; margin-top:34px; transition:background .15s;
+}
+#db-form-root button.db-submit:hover{background:var(--db-accent); border-color:var(--db-accent)}
+#db-form-root button.db-submit[disabled]{opacity:.55; cursor:default}
+#db-form-root .db-error{
+  color:#8A2E2E; font-size:15px; margin-top:16px; display:none;
+}
+#db-form-root .db-error.is-on{display:block}
+#db-form-root .db-note{font-size:14px; color:var(--db-muted); margin-top:20px}
+#db-form-root .db-done{display:none; text-align:center; padding:40px 0}
+#db-form-root .db-done.is-on{display:block}
+#db-form-root .db-done h2{
+  font-family:'Cormorant Garamond',Georgia,serif; font-weight:300; font-size:clamp(32px,6vw,48px);
+  line-height:1.15; margin:0 0 20px; color:var(--db-ink);
+}
+#db-form-root .db-done p{font-size:17px; color:var(--db-body); max-width:30em; margin:0 auto 14px}
+@media (max-width:480px){
+  #db-form-root button.db-submit{width:100%; padding:18px 24px}
+}
+</style>
+
+<div id="db-live" aria-live="polite">
+
+  <form id="db-form" novalidate>
+    <div class="db-eyebrow">Candidature aperte</div>
+    <h1 class="db-title">Dream Bride</h1>
+    <div class="db-claim">Un'anteprima esclusiva, unica come te</div>
+    <div class="db-rule"></div>
+
+    <p class="db-intro">Un appuntamento in atelier dedicato solo a te: provi l'abito dei tuoi sogni, ma truccata, pettinata e con il bouquet tra le mani. E un fotografo che immortala il risultato.</p>
+    <p class="db-intro"><strong>Selezioniamo 6 spose.</strong> Raccontaci di te: leggeremo ogni candidatura e ti risponderemo comunque, anche se non dovessi rientrare tra le sei.</p>
+
+    <fieldset>
+      <legend>I tuoi contatti</legend>
+
+      <div class="db-field">
+        <label for="db-nome">Nome e cognome <span class="db-req">*</span></label>
+        <input type="text" id="db-nome" name="nome" autocomplete="name" required>
+      </div>
+
+      <div class="db-field">
+        <label for="db-email">Email <span class="db-req">*</span></label>
+        <input type="email" id="db-email" name="email" autocomplete="email" required>
+      </div>
+
+      <div class="db-field">
+        <label for="db-tel">Telefono <span class="db-req">*</span></label>
+        <span class="db-hint">Meglio se raggiungibile anche su WhatsApp.</span>
+        <input type="tel" id="db-tel" name="telefono" autocomplete="tel" required>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Il tuo matrimonio</legend>
+
+      <div class="db-field">
+        <label for="db-sposo">Il nome del tuo sposo</label>
+        <input type="text" id="db-sposo" name="sposo">
+      </div>
+
+      <div class="db-field">
+        <label for="db-data">Data del matrimonio</label>
+        <span class="db-hint">Se non l'avete ancora fissata, lascia vuoto e scrivilo nelle note.</span>
+        <input type="date" id="db-data" name="data_matrimonio">
+      </div>
+
+      <div class="db-field">
+        <label for="db-dove">La location</label>
+        <span class="db-hint">Se l'avete già scelta scrivi quale, altrimenti la zona in cui state cercando.</span>
+        <input type="text" id="db-dove" name="luogo">
+      </div>
+
+      <div class="db-field">
+        <span class="db-grouplabel">Hai già scelto qualcuno di questi fornitori?</span>
+        <span class="db-hint">Nessun problema se sì, e non è un criterio di selezione: ci serve per sapere di cosa hai ancora bisogno.</span>
+        <div class="db-checks">
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Abito"> <span>L'abito</span></label>
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Acconciatura"> <span>L'acconciatura</span></label>
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Make-up"> <span>Il make-up</span></label>
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Fiori"> <span>I fiori</span></label>
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Fotografo"> <span>Il fotografo</span></label>
+          <label class="db-check"><input type="checkbox" name="gia_scelti" value="Nessuno"> <span>Nessuno, siamo all'inizio</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>La sessione</legend>
+
+      <div class="db-field">
+        <label for="db-periodo">Quando preferiresti venire</label>
+        <select id="db-periodo" name="periodo">
+          <option value="Indifferente">Indifferente, mi adatto</option>
+          <option value="Dicembre">Dicembre</option>
+          <option value="Gennaio">Gennaio</option>
+          <option value="Febbraio">Febbraio</option>
+        </select>
+      </div>
+
+      <div class="db-field">
+        <label for="db-accomp">Chi vorresti portare con te</label>
+        <span class="db-hint">Puoi portare al massimo 2 persone.</span>
+        <input type="text" id="db-accomp" name="accompagnatori" placeholder="Mia madre e mia sorella">
+      </div>
+
+      <div class="db-field">
+        <label for="db-racconto">Raccontaci perché vorresti esserci <span class="db-req">*</span></label>
+        <span class="db-hint">Non serve scrivere tanto. Scrivi come parli: è così che vi conosciamo.</span>
+        <textarea id="db-racconto" name="racconto" required></textarea>
+      </div>
+
+      <div class="db-field">
+        <label for="db-come">Come hai conosciuto Dream Bride</label>
+        <select id="db-come" name="provenienza">
+          <option value="">—</option>
+          <option value="Villa di Bagno">All'evento di Villa di Bagno</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Passaparola">Passaparola</option>
+          <option value="Uno dei professionisti">Me ne ha parlato uno dei professionisti</option>
+          <option value="Altro">Altro</option>
+        </select>
+      </div>
+
+      <div class="db-field">
+        <label for="db-note">Qualcos'altro che vuoi dirci</label>
+        <textarea id="db-note" name="note" style="min-height:90px"></textarea>
+      </div>
+    </fieldset>
+
+    <div class="db-consent">
+      <label class="db-check">
+        <input type="checkbox" id="db-privacy" name="privacy" required>
+        <span>Ho letto l'informativa e acconsento al trattamento dei miei dati. <span class="db-req">*</span></span>
+      </label>
+      <p>I dati che inserisci sono condivisi tra i cinque professionisti di Dream Bride e usati solo per valutare la candidatura e ricontattarti. Puoi chiederne la cancellazione in qualsiasi momento scrivendo a <a href="mailto:info@sposidomani.it">info@sposidomani.it</a>. <a href="https://www.sposidomani.it/informativa-privacy/" target="_blank" rel="noopener">Leggi l'informativa completa</a>.</p>
+    </div>
+
+    <div class="db-hp" aria-hidden="true">
+      <label for="db-website">Non compilare questo campo</label>
+      <input type="text" id="db-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit" class="db-submit" id="db-submit">Invia la candidatura</button>
+    <div class="db-error" id="db-error" role="alert"></div>
+    <p class="db-note">Le candidature restano aperte fino al <strong style="font-weight:400">20 novembre</strong>. Entro il 30 novembre ti diremo com'è andata, qualunque sia l'esito.<br>
+    Per qualsiasi dubbio scrivi a Nadia: <a href="mailto:info@sposidomani.it">info@sposidomani.it</a> · <a href="tel:+393389161644">338 9161644</a></p>
+  </form>
+
+  <div class="db-done" id="db-done">
+    <h2>Grazie, abbiamo ricevuto la tua candidatura.</h2>
+    <p>La leggeremo con calma, tutti e cinque. Entro il 30 novembre ti scriveremo, qualunque sia l'esito.</p>
+    <p>Tra pochi minuti ricevi una mail di conferma. Se non arriva, controlla la posta indesiderata o scrivi a <a href="mailto:info@sposidomani.it">info@sposidomani.it</a>.</p>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbziIeBnuW8eNoCLvGJF-eiVedw9_qVp1f65OO6m0u9q3tpqnP7cUoldnwFoI-0ZGqYu/exec';
+
+  var form = document.getElementById('db-form');
+  var done = document.getElementById('db-done');
+  var btn = document.getElementById('db-submit');
+  var err = document.getElementById('db-error');
+
+  function fail(msg) {
+    err.textContent = msg;
+    err.className = 'db-error is-on';
+    btn.disabled = false;
+    btn.textContent = 'Invia la candidatura';
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    err.className = 'db-error';
+
+    var required = [
+      ['db-nome', 'Scrivi il tuo nome e cognome.'],
+      ['db-email', 'Serve un indirizzo email valido per ricontattarti.'],
+      ['db-tel', 'Serve un numero di telefono.'],
+      ['db-racconto', 'Raccontaci due righe su di te: è la parte che leggiamo con più attenzione.']
+    ];
+    for (var i = 0; i < required.length; i++) {
+      var el = document.getElementById(required[i][0]);
+      if (!el.value.trim() || (el.type === 'email' && !el.checkValidity())) {
+        fail(required[i][1]);
+        el.focus();
+        return;
+      }
+    }
+    if (!document.getElementById('db-privacy').checked) {
+      fail('Per inviare la candidatura serve il consenso al trattamento dei dati.');
+      return;
+    }
+
+    var data = {};
+    var fd = new FormData(form);
+    fd.forEach(function (value, key) {
+      if (key === 'gia_scelti') {
+        data[key] = data[key] ? data[key] + ', ' + value : value;
+      } else {
+        data[key] = value;
+      }
+    });
+    data.privacy = 'Sì';
+    data.pagina = location.href;
+
+    btn.disabled = true;
+    btn.textContent = 'Invio in corso…';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      // text/plain evita il preflight CORS, che Apps Script non gestisce
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.ok) {
+          form.style.display = 'none';
+          done.className = 'db-done is-on';
+          document.getElementById('db-form-root').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          fail('Qualcosa non ha funzionato. Riprova, oppure scrivi a info@sposidomani.it.');
+        }
+      })
+      .catch(function () {
+        fail('Qualcosa non ha funzionato. Riprova, oppure scrivi a info@sposidomani.it.');
+      });
+  });
+})();
+</script>
