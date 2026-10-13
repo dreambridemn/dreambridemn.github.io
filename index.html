@@ -34,6 +34,35 @@
 #db-form-root .db-rule{width:88px; height:1px; background:var(--db-line); margin:32px 0}
 #db-form-root .db-intro{font-size:17px; color:var(--db-body); margin:0 0 10px}
 #db-form-root .db-intro strong{font-weight:500; color:var(--db-ink)}
+#db-form-root .db-lead{font-size:19px; line-height:1.65; color:var(--db-ink); margin:0 0 14px; font-weight:300}
+#db-form-root .db-lead strong{font-weight:500}
+#db-form-root details.db-more{margin-top:18px; border-bottom:1px solid var(--db-rule)}
+#db-form-root details.db-more summary{
+  list-style:none; cursor:pointer; padding:16px 2px; font-size:16px; color:var(--db-accent);
+  display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px;
+}
+#db-form-root details.db-more summary::-webkit-details-marker{display:none}
+#db-form-root details.db-more summary::after{content:'+'; font-size:22px; line-height:1; color:var(--db-accent)}
+#db-form-root details.db-more[open] summary::after{content:'\2013'}
+#db-form-root details.db-more summary:focus-visible{outline:2px solid var(--db-accent); outline-offset:2px}
+#db-form-root .db-more-body{padding:4px 2px 26px}
+#db-form-root .db-more-body h2{
+  font-family:'Cormorant Garamond',Georgia,serif; font-weight:400; font-size:25px;
+  color:var(--db-ink); margin:26px 0 10px;
+}
+#db-form-root .db-more-body h2:first-child{margin-top:6px}
+#db-form-root .db-more-body p{font-size:16px; line-height:1.7; color:var(--db-body); margin:0 0 12px}
+#db-form-root .db-more-body ul{margin:0; padding:0; list-style:none}
+#db-form-root .db-more-body li{
+  font-size:16px; line-height:1.6; color:var(--db-body);
+  padding:10px 0; border-bottom:1px solid var(--db-rule);
+}
+#db-form-root .db-more-body li:last-child{border-bottom:0}
+#db-form-root .db-more-body li b{font-weight:400; color:var(--db-ink)}
+#db-form-root .db-start{
+  font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:400;
+  color:var(--db-ink); margin:44px 0 0; padding-top:30px; border-top:1px solid var(--db-line);
+}
 #db-form-root fieldset{border:0; margin:40px 0 0; padding:0}
 #db-form-root legend{
   font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:400;
@@ -112,8 +141,45 @@
     <div class="db-claim">Un'anteprima esclusiva, unica come te</div>
     <div class="db-rule"></div>
 
-    <p class="db-intro">Un appuntamento in atelier dedicato solo a te: provi l'abito dei tuoi sogni, ma truccata, pettinata e con il bouquet tra le mani. E un fotografo che immortala il risultato.</p>
-    <p class="db-intro"><strong>Selezioniamo 6 spose.</strong> Raccontaci di te: leggeremo ogni candidatura e ti risponderemo comunque, anche se non dovessi rientrare tra le sei.</p>
+    <p class="db-lead">Provare l'abito è emozionante. Ma con i capelli raccolti alla meglio e il viso struccato, quello che vedi allo specchio non è ancora te il giorno del matrimonio.</p>
+    <p class="db-lead"><strong>Dream Bride lo anticipa di mesi:</strong> una mattina in atelier dedicata solo a te, con l'abito addosso, truccata, pettinata, il bouquet tra le mani. E un fotografo che immortala il risultato.</p>
+
+    <p class="db-lead">Selezioniamo <strong>6 spose</strong>. La sessione costa <strong>250 €</strong>, ed è una spesa che puoi recuperare per intero.</p>
+
+    <details class="db-more">
+      <summary>Come funziona, nel dettaglio</summary>
+      <div class="db-more-body">
+
+        <h2>Cosa comprende la sessione</h2>
+        <ul>
+          <li><b>L'abito</b> — scegli e provi l'abito dei tuoi sogni tra le collezioni dell'atelier Sposi Domani.</li>
+          <li><b>L'acconciatura</b> — una messa in piega studiata sul tuo viso e sulla scollatura dell'abito.</li>
+          <li><b>Il make-up</b> — il trucco pensato per la luce e per le fotografie, non solo per lo specchio.</li>
+          <li><b>Il bouquet</b> — fiori veri tra le mani, scelti sui colori del tuo look.</li>
+          <li><b>Le fotografie</b> — gli scatti che ti porterai a casa alla fine della sessione.</li>
+        </ul>
+
+        <h2>Costa, ma puoi recuperare la spesa</h2>
+        <p>La sessione costa <strong>250 €</strong>. Puoi portare con te fino a 2 persone.</p>
+        <p>Se poi sceglierai noi per il tuo matrimonio, ognuno dei cinque professionisti ti sconterà 50 € sul proprio servizio. <strong>Scegliendo tutto il team, i 250 € ti tornano indietro per intero.</strong></p>
+
+        <h2>Quando</h2>
+        <p>Tre giornate, una al mese a partire da dicembre, due sessioni per giornata. Nel form ci dici quale periodo preferiresti: cerchiamo di accontentarti.</p>
+
+        <h2>Entro quando candidarsi</h2>
+        <p>Le candidature restano aperte fino al <strong>20 novembre</strong>. Entro il 30 novembre ti diremo com'è andata, qualunque sia l'esito.</p>
+
+        <h2>Chi siamo</h2>
+        <p>Sposi Domani per l'abito, Monica Hair News per l'acconciatura, Maela Marastoni per il make-up, LB Fiori per il bouquet, Alessandro Zaniboni per le fotografie. Cinque professionisti che hanno scelto di lavorare insieme: parlarci prima significa farti trovare tutto coordinato dopo.</p>
+
+        <h2>Perché solo sei</h2>
+        <p>Perché non è una giornata a porte aperte. L'atelier è tuo, il tempo è tuo, e cinque professionisti lavorano per una sola sposa. Per questo scegliamo, e per questo ti chiediamo di raccontarti.</p>
+
+      </div>
+    </details>
+
+    <p class="db-start">Raccontaci di te.</p>
+    <p class="db-lead" style="font-size:17px; margin-top:10px">Leggeremo ogni candidatura, tutti e cinque. Ti risponderemo comunque, anche se non dovessi rientrare tra le sei.</p>
 
     <fieldset>
       <legend>I tuoi contatti</legend>
